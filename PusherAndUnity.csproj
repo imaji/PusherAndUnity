@@ -230,11 +230,65 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>Assets/Assemblies/Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>Assets/Assemblies/Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>Assets/Assemblies/Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets/Assemblies/Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent">
+      <HintPath>Assets/Assemblies/Nito.AsyncEx.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx">
+      <HintPath>Assets/Assemblies/Nito.AsyncEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment">
+      <HintPath>Assets/Assemblies/Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
     <Reference Include="PusherClient">
       <HintPath>Assets/Assemblies/PusherClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>Assets/Assemblies/SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Specialized">
+      <HintPath>Assets/Assemblies/System.Collections.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NameResolution">
+      <HintPath>Assets/Assemblies/System.Net.NameResolution.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Security">
+      <HintPath>Assets/Assemblies/System.Net.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets">
+      <HintPath>Assets/Assemblies/System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>Assets/Assemblies/System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>Assets/Assemblies/System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <HintPath>Assets/Assemblies/System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <HintPath>Assets/Assemblies/System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <HintPath>Assets/Assemblies/System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <HintPath>Assets/Assemblies/System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <HintPath>Assets/Assemblies/System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference>
     <Reference Include="WebSocket4Net">
       <HintPath>Assets/Assemblies/WebSocket4Net.dll</HintPath>

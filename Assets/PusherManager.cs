@@ -1,66 +1,68 @@
-﻿using PusherClient;
+﻿using System;
+using PusherClient;
 using UnityEngine;
 
 public class PusherManager : MonoBehaviour
 {
     // A mutation of https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
-
-    public static PusherManager PusherManagerInstance = null;
+    public static PusherManager instance = null;
 
     private Pusher _pusher;
     private Channel _channel;
 
-    // Use this for initialization
-    void Awake ()
+    void Start()
     {
-        if (PusherManagerInstance == null)
-        {
-            PusherManagerInstance = this;
-            InitialisePusher();
-        }
-        else if (PusherManagerInstance != this)
-        {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
             Destroy(gameObject);
-        }
 
         DontDestroyOnLoad(gameObject);
+
+        InitialisePusher();
+        Console.WriteLine("Starting");
     }
 
     private void InitialisePusher()
     {
         if (_pusher == null)
         {
-            _pusher = new Pusher("", new PusherOptions
-            {
-                // We'll use the autorised from the Client solution
-                Authorizer = new HttpAuthorizer("http://localhost:8888/auth/Unity")
-            });
+            _pusher = new Pusher("<Your app key goes here>");
 
-            _pusher.Error += (s, e) =>
-            {
-                var i = 1;
-            };
+            _pusher.Error += OnPusherOnError;
+            _pusher.ConnectionStateChanged += PusherOnConnectionStateChanged;
+            _pusher.Connected += PusherOnConnected;
+
+            _channel = _pusher.Subscribe("test-channel");
+            _channel.Subscribed += OnChannelOnSubscribed;
+
             _pusher.Connect();
-            _channel = _pusher.Subscribe("TestChannel");
-            _channel.Subscribed += (s) =>
-            {
-                var j = 2;
-            };
         }
+    }
+
+    private void PusherOnConnected(object sender)
+    {
+        // todo handle pusher connected
+    }
+
+    private void PusherOnConnectionStateChanged(object sender, ConnectionState state)
+    {
+        // todo handle connection state change
+    }
+
+    private void OnPusherOnError(object s, PusherException e)
+    {
+        // Todo handle an error
+    }
+
+    private void OnChannelOnSubscribed(object s)
+    {
+        // Todo handle channel subscribed too
     }
 
     public void Message(string message)
     {
-        var k = 1;
-    }
-
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(Screen.width / 2 - 50, 5, 100, 30), "Click"))
-        {
-            //if (OnClicked != null)
-            //    OnClicked();
-        }
+        _channel.Trigger("time has occured", message);
     }
 
     void OnApplicationQuit()
