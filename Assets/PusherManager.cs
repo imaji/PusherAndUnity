@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using PusherClient;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class PusherManager : MonoBehaviour
     private Pusher _pusher;
     private Channel _channel;
 
-    void Start()
+    async Task Start()
     {
         if (instance == null)
             instance = this;
@@ -19,24 +20,26 @@ public class PusherManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        InitialisePusher();
+        await InitialisePusher();
         Console.WriteLine("Starting");
     }
 
-    private void InitialisePusher()
+    private async Task InitialisePusher()
     {
         if (_pusher == null)
         {
+            //Environment.SetEnvironmentVariable("PREFER_DNS_IN_ADVANCE", "true");
+
             _pusher = new Pusher("<Your app key goes here>");
 
             _pusher.Error += OnPusherOnError;
             _pusher.ConnectionStateChanged += PusherOnConnectionStateChanged;
             _pusher.Connected += PusherOnConnected;
 
-            _channel = _pusher.Subscribe("test-channel");
+            _channel = await _pusher.SubscribeAsync("test-channel");
             _channel.Subscribed += OnChannelOnSubscribed;
 
-            _pusher.Connect();
+            await _pusher.ConnectAsync();
         }
     }
 
@@ -62,14 +65,14 @@ public class PusherManager : MonoBehaviour
 
     public void Message(string message)
     {
-        _channel.Trigger("time has occured", message);
+        _channel?.Trigger("time has occured", message);
     }
 
-    void OnApplicationQuit()
+    async Task OnApplicationQuit()
     {
         if (_pusher != null)
         {
-            _pusher.Disconnect();
+            await _pusher.DisconnectAsync();
         }
     }
 }
